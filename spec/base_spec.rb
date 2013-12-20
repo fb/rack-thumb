@@ -63,6 +63,11 @@ describe Rack::Thumb do
     res.content_length.must_equal 97374
     res.body.bytesize.must_equal 97374
   end
+
+  it "should return the correct Content-Length header for thumbnails" do
+    res = request.get("/media/imagick_50x50.jpg")
+    res.content_length.must_equal res.body.bytesize
+  end
   
   it "should not render on a HEAD request" do
     res = request.request("HEAD", "/media/imagick_50x50.jpg")
