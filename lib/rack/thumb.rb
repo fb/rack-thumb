@@ -202,7 +202,7 @@ module Rack
       if head?  
         headers.delete("Content-Length")
       else
-        headers.merge("Content-Length" => ::File.size(@thumb.path).to_s)
+        headers.merge!("Content-Length" => ::File.size(@thumb.path).to_s)
         body = self
       end
       throw :halt, [200, headers, body || []]
